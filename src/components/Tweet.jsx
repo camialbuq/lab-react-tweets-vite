@@ -1,39 +1,57 @@
-function Tweet() {
+import ProfileImage from "./ProfileImage.jsx";
+import Timestamp from "./Timestamp.jsx";
+import User from "./User.jsx";
+import Message from "./Message.jsx";
+import Actions from "./Actions.jsx";
+
+// the code below would display only tweet from 1 item, the tweetsArray[0]
+//only in iteration 9 we make it dinamic with a loop for all elements in the array
+//we change in app.jsx to tweet={tweetsArray}
+//and add a loop here to iterate through elements
+
+function Tweet(props) {
   return (
-    <div className="tweet">
-      <img
-        src="https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/ih_logo.jpeg"
-        className="profile"
-        alt="profile"
-      />
+    <>
+      {props.tweet.map((prop, index) => (
+        <div key={index} className="tweet">
+          <ProfileImage image={prop.user.image} />
 
-      <div className="body">
-        <div className="top">
-          <span className="user">
-            <span className="name">Ironhack</span>
-            <span className="handle">@ironhack</span>
-          </span>
+          <div className="body">
+            <div className="top">
+              <User name={prop.user.name} handle={prop.user.handle} />
 
-          <span className="timestamp">Nov 30, 2020</span>
+              <Timestamp time={prop.timestamp} />
+            </div>
+
+            <Message message={prop.message} />
+
+            <Actions />
+          </div>
         </div>
-
-        <p className="message">
-          On December 7th, we will be hosting a #webinar that will introduce you
-          to #SQL! Are you ready? 🚀
-        </p>
-
-        <div className="actions">
-          {/* Font Awesome icons */}
-          <i className="far fa-comment" data-testid="comment-icon"></i>
-          <i className="fas fa-retweet" data-testid="retweet-icon"></i>
-          <i className="far fa-heart" data-testid="heart-icon"></i>
-          <i className="fas fa-share" data-testid="share-icon"></i>
-        </div>
-      </div>
-
-      <i className="fas fa-ellipsis-h"></i>
-    </div>
+      ))}
+    </>
   );
 }
-
 export default Tweet;
+
+// this is the code for only one item tweet={tweetsArray[0]}
+//{/* <div className="tweet">
+// {props.tweet.map((prop,index) => {
+
+// })}
+// {/* <img src={tweet.user.image} className="profile" alt="profile" /> */}
+// <ProfileImage image={tweet.user.image} />
+// <div className="body">
+//   <div className="top">
+//     <User name={tweet.user.name} handle={tweet.user.handle} />
+//     <Timestamp time={tweet.timestamp} />
+//   </div> */}
+// {/*
+//         {/* <p className="message">{tweet.message}</p> */}
+//         <Message message={tweet.message} />
+//         <Actions />
+//       </div>
+//       <i className="fas fa-ellipsis-h"></i>
+//       {/* this is just the 3 dots icon on the right */}
+//     </div>
+//   ); */}
